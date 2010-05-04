@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="jmf-firewire-protocols">
+
+    <property environment="env"/>
+
+    <property name="LIBs.location" value="../LIBs"/>
+    <property name="JMF.location" value="${LIBs.location}/JMF-2.1.1e/lib"/>
+
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.5"/>
+    <property name="source" value="1.5"/>
+
+    <path id="compile.classpath">
+        <pathelement location="classes"/>
+        <pathelement location="${JMF.location}/jmf.jar"/>
+    </path>
+
+    <path id="run.classpath">
+        <path refid="compile.classpath"/>
+        <pathelement location="${JMF.location}/mediaplayer.jar"/>
+        <pathelement location="${JMF.location}/multiplayer.jar"/>
+    </path>
+
+    <target name="init" description="Prepare directories">
+        <mkdir dir="classes"/>
+        <copy includeemptydirs="false" todir="classes">
+            <fileset dir="src/java" excludes="**/*.launch, **/*.java"/>
+        </copy>
+    </target>
+
+    <target name="clean" description="Clean java classes">
+        <delete dir="classes"/>
+    </target>
+
+    <target depends="init" name="build" description="Build project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="classes" source="${source}" target="${target}">
+            <src path="src/java"/>
+            <classpath refid="compile.classpath"/>
+        </javac>
+        <javah destdir="src/native/include" force="yes" verbose="no" old="no">
+            <class name="br.ufabc.bassani.jmf.firewire.media.protocol.fwc.FireWireCamera"/>
+            <class name="br.ufabc.bassani.jmf.firewire.media.protocol.sfwc.StereoFireWireCamera"/>
+            <class name="br.ufabc.bassani.jmf.firewire.media.protocol.rsfwc.RealStereoFireWireCamera"/>
+            <classpath refid="compile.classpath"/>
+        </javah>
+        <exec dir="src/native/" 
+            executable="/bin/bash" 
+            os="Linux">
+          <arg line="compile.sh"/>
+        </exec>
+    </target>
+    
+    <target name="run" description="Run test application">
+        <java classname="br.bassani.jmf.JMFBassaniEffects" dir="." failonerror="true" fork="yes">
+            <env key="LD_LIBRARY_PATH" value="${JMF.location}"/>
+            <jvmarg line="-Djava.library.path=${JMF.location}"/>
+            <classpath refid="run.classpath"/>
+        </java>
+    </target>
+
+</project>

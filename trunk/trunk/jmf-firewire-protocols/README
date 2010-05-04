@@ -1,0 +1,44 @@
+===========================================================
+
+Baseado em:
+   JMF Support for Firewire Cameras under Linux
+   [ http://sourceforge.net/projects/jfw/ ]
+
+   This project provides firewire camera support for use in the Java Media Framework (JMF) under Linux. 
+
+Autor:
+   Martin Bateman
+   [ mb@dcs.st-and.ac.uk ]
+
+===========================================================
+
+Modificacao (C/C++, Bayer/RGB)
+
+Atualmente usando cpp_simples - conversao no java :)
+
+Autor:
+   Oswaldo Bassani
+   [ oswaldo.bassani@gmail.com ]
+   [ oswaldo.bassani@ufabc.edu.br ]
+
+===========================================================
+
+Pacotes Linux / Ubuntu
+
+// - libdc1394 (1) 8.10
+// > libdc1394/control/dc1394_control.h
+// - libdc1394 (1) 9.04
+// > libdc1394/dc1394_control.h
+// - libdc1394 (2)
+// > Pastas: dc1394/linux, dc1394/control, dc1394
+
+// Ubuntu 8.04 / 8.10 : '/dev/video1394/0'
+// Ubuntu 9.04 : '/dev/video1394-0'
+
+===========================================================
+
+Make sure you have firewire setup in your kernel
+
+Install the libdc1394 library
+
+===========================================================
