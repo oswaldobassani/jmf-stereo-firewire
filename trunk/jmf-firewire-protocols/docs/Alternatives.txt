@@ -1,0 +1,21 @@
+- jlibdc1394
+Java API for FireWire (IEEE1394 aka i.Link) at SF.net
+[ http://jlibdc1394.sourceforge.net/ ]
+ + JLibDC4JMF
+
+- J1394Cam
+Java API for FireWire-cameras
+[ http://www.alex-bieber.de/j1394cam/ ]
+
+- Video4Linux4Java
+A java package to access the Capture interface of the Video4Linux API
+[ http://code.google.com/p/v4l4j/ ]
+
+- javacv
+Java interface to OpenCV and more 
+[ http://code.google.com/p/javacv/ ]
+
+Labels:
+	linux, video4linux, java, video, capture, image, frame, stream, jpeg, mpeg, mpg, OpenCV, computervision 
+
+
